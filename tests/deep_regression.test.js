@@ -24,6 +24,7 @@ assert(/request\.open\(postFields \? 'POST' : 'GET'/.test(src),'Card numbers mus
 assert(!/['"]\/login\?username=/.test(src),'No credential-bearing login query strings');
 assert(login.includes('$(if var == "native")'),'RouterOS native fallback missing');
 assert(index.includes('/login?var=native'),'Fallback must be accessible even without JS');
+assert(src.includes('var nativeLoginLink = document.querySelector'), 'Selected speed should transfer through the visible native link');
 assert(index.includes('logo-fallback.png'),'Old browser fallback image missing');
 assert(!/3600 requests/.test(src));
 const mock={loggedIn:true,lastLoginAt:0,sessionNegativeCount:0,sessionNegativeAt:0,

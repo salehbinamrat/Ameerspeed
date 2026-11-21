@@ -30,7 +30,7 @@ with sync_playwright() as p:
                    }else if(this.url.indexOf('/status?')===0){
                      r={action:'onStatusQuery',logged_in:'yes',username:'123456',remain_bytes_total:'2048',session_time_left:'1h',uptime:'3m'};
                    }
-                   this.status=200;this.responseText=JSON.stringify(r);this.readyState=4;
+                   this.status=200;this.responseText=this.url.indexOf('/login?var=chapdata')===0 ? 'AMEER_CHAP_V1\\nPAP\\n' : JSON.stringify(r);this.readyState=4;
                    if(this.onreadystatechange)this.onreadystatechange();
                 }
                 setRequestHeader(){}

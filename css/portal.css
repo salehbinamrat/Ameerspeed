@@ -117,3 +117,32 @@ body{min-width:0;overflow-x:hidden}
 }
 
 @media (max-width:360px) and (max-height:650px){.logo{height:55px}.mf+.mf{margin-top:7px}.quick-login-link{padding:4px 7px}.bf{padding-bottom:8px}}
+
+/* legacy-mobile-safe: CSS Grid fallback for Android 4/5 WebViews.
+   Use a fixed, predictable flex layout; modern engines retain the original grid. */
+.so,.sg,.lt2,.ca,.pm,.pt,.pc{display:-webkit-box;display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap}
+.so > *, .sg > *{display:block;width:24%;-webkit-box-flex:0;-webkit-flex:0 0 24%;flex:0 0 24%}
+.sg > *{width:32%;-webkit-flex-basis:32%;flex-basis:32%}
+.lt2 > *,.ca > *{width:48%;-webkit-flex:0 0 48%;flex:0 0 48%}
+.pm > *{width:100%}
+.pt > *, .pc > *{display:inline-block;vertical-align:middle;width:24%}
+@supports (display:grid){
+  .so,.sg,.lt2,.ca,.pm,.pt,.pc{display:grid}
+  .so > *,.sg > *,.lt2 > *,.ca > *,.pm > *,.pt > *,.pc > *{width:auto}
+}
+@media(max-width:350px) and (max-height:580px){
+  .sc6{padding:6px 7px 14px}
+  .logo{height:66px}
+  .bf{padding:7px 8px 8px}
+  .mf+.mf{margin-top:6px}
+  .sf{padding:6px 7px}
+  .sf3{margin-bottom:2px}
+  .sc{min-height:38px}
+  .lf{padding:32px 8px 10px}
+  .lt1{min-height:36px}
+  .li{height:40px;min-height:40px}
+  .login-submit{height:44px;min-height:44px;margin-top:6px}
+  .quick-login-link{padding:4px 9px;margin:2px auto}
+}
+#speedSignalNotice:empty{display:none}
+#speedSignalNotice{padding:4px 8px;font-size:11px;line-height:1.6;color:#51316e}

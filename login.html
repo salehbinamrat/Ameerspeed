@@ -1,5 +1,5 @@
 $(if var == "native")
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>الدخول المتوافق — شبكة الأمير</title><meta http-equiv="cache-control" content="no-store"><style>body{font-family:Arial,Tahoma,sans-serif;background:#f6f0fb;color:#401956;padding:16px;text-align:center}main{background:#fff;border:1px solid #b697cc;border-radius:12px;max-width:360px;margin:18px auto;padding:16px}label{display:block;margin:14px 0 6px}input,button{font:inherit;box-sizing:border-box;width:100%;min-height:46px;padding:10px;border-radius:7px;border:1px solid #ad87c8}button{background:#6834ac;color:#fff;margin-top:18px;font-weight:bold}a{color:#6834ac}</style></head><body><main><h2>الدخول البسيط — الأمير نت</h2><p>طريقة بديلة للهواتف القديمة أو عند تعذر الدخول العادي</p><form method="post" action="/login" id="nativeHotspotLogin" onsubmit="return submitCompatibleLogin()"><label for="nativeUsername">رقم الكرت</label><input id="nativeUsername" name="username" autocomplete="username" required><label for="nativePassword">كلمة المرور (إن وجدت)</label><input id="nativePassword" name="password" type="password" autocomplete="current-password"><input type="hidden" id="nativeDomain" name="domain" value=""><button type="submit">تسجيل الدخول</button></form><p><a href="index.html">العودة للواجهة الرئيسية</a></p></main>
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>الدخول المتوافق — شبكة الأمير</title><meta http-equiv="cache-control" content="no-store"><style>body{font-family:Arial,Tahoma,sans-serif;background:#f6f0fb;color:#401956;padding:16px;text-align:center}main{background:#fff;border:1px solid #b697cc;border-radius:12px;max-width:360px;margin:18px auto;padding:16px}label{display:block;margin:14px 0 6px}input,button{font:inherit;box-sizing:border-box;width:100%;min-height:46px;padding:10px;border-radius:7px;border:1px solid #ad87c8}button{background:#6834ac;color:#fff;margin-top:18px;font-weight:bold}a{color:#6834ac}</style></head><body><main><h2>الدخول البسيط — الأمير نت</h2><p>طريقة بديلة للهواتف القديمة أو عند تعذر الدخول العادي</p><form method="post" action="/login" id="nativeHotspotLogin" onsubmit="return submitCompatibleLogin()"><label for="nativeUsername">رقم الكرت</label><input id="nativeUsername" name="username" autocomplete="username" required><label for="nativePassword">كلمة المرور (إن وجدت)</label><input id="nativePassword" name="password" type="password" autocomplete="current-password"><label for="nativeDomainChoice">نوع الكرت / السرعة</label><select id="nativeDomainChoice" name="domain" style="width:100%;min-height:46px;padding:9px;border:1px solid #ad87c8;border-radius:7px"><option value="">هوتسبوت</option><option value="najm-speed-2m">ضعيفة — يوزرمنجر</option><option value="najm-speed-10m">متوسطة — يوزرمنجر</option><option value="najm-speed-open">مفتوحة — يوزرمنجر</option></select><button type="submit">تسجيل الدخول</button></form><p><a href="index.html">العودة للواجهة الرئيسية</a></p></main>
 $(if chap-id)
 <script src="js/md5.js"></script>
 <script>function submitCompatibleLogin(){var form=document.getElementById('nativeHotspotLogin');if(typeof hotChapMd5!=='function'){alert('تعذر تحميل مكون المصادقة. أعد المحاولة.');return false;}form.password.value=hotChapMd5('$(chap-id)'+form.password.value+'$(chap-challenge)');return true;}</script>
@@ -7,13 +7,21 @@ $(if chap-id)
 $(else)
 <script>function submitCompatibleLogin(){return true;}</script>
 $(endif)
-<script>(function(){try{var saved=sessionStorage.getItem('alameer_native_user');sessionStorage.removeItem('alameer_native_user');if(saved)document.getElementById('nativeUsername').value=saved;var d=sessionStorage.getItem('alameer_native_domain')||'';sessionStorage.removeItem('alameer_native_domain');if(d==='najm-speed-2m'||d==='najm-speed-10m'||d==='najm-speed-open')document.getElementById('nativeDomain').value=d;}catch(e){}})();</script>
+<script>(function(){try{var saved=sessionStorage.getItem('alameer_native_user');sessionStorage.removeItem('alameer_native_user');if(saved)document.getElementById('nativeUsername').value=saved;var d=sessionStorage.getItem('alameer_native_domain')||'';sessionStorage.removeItem('alameer_native_domain');if(d==='najm-speed-2m'||d==='najm-speed-10m'||d==='najm-speed-open')document.getElementById('nativeDomainChoice').value=d;}catch(e){}})();</script>
 </body></html>
 $(else)
 $(if var == "")
 <!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>شبكة الأمير - تسجيل الدخول</title><meta http-equiv="cache-control" content="no-store"></head><body style="font-family:Arial,sans-serif;text-align:center;padding:20px;background:#f4f1f6;color:#511a64">
 <p role="status" id="nativeMessage">جارٍ فتح صفحة شبكة الأمير...</p>
 <p><a href="index.html">العودة إلى صفحة الدخول</a></p>
+<p>إذا تعذر التحويل، يمكنك الدخول مباشرة:</p><main style="margin:12px auto;padding:14px;max-width:370px;background:#fff;border:1px solid #b697cc;border-radius:10px"><style>#basicHotspotLogin label{display:block;margin:9px 0 4px}#basicHotspotLogin input,#basicHotspotLogin select,#basicHotspotLogin button{display:block;box-sizing:border-box;width:100%;min-height:44px;margin:4px auto;padding:8px;font-size:16px}#basicHotspotLogin button{background:#6834ac;color:#fff;border:0;border-radius:6px}</style><form method="post" action="/login" id="basicHotspotLogin" onsubmit="return submitCompatibleLogin()"><label for="basicUser">رقم الكرت</label><input id="basicUser" name="username" autocomplete="username" required><label for="basicPassword">كلمة المرور (إن وجدت)</label><input id="basicPassword" name="password" type="password" autocomplete="current-password"><label for="basicDomain">نوع الكرت / السرعة</label><select id="basicDomain" name="domain"><option value="">هوتسبوت</option><option value="najm-speed-2m">ضعيفة — يوزرمنجر</option><option value="najm-speed-10m">متوسطة — يوزرمنجر</option><option value="najm-speed-open">مفتوحة — يوزرمنجر</option></select><button type="submit">تسجيل الدخول</button></form>
+$(if chap-id)
+<script src="js/md5.js"></script><script>function submitCompatibleLogin(){var p=document.getElementById('basicPassword');if(typeof hotChapMd5!=='function'){alert('تعذر تحميل المصادقة.');return false;}p.value=hotChapMd5('$(chap-id)'+p.value+'$(chap-challenge)');return true;}</script>
+<noscript><p>عند تفعيل CHAP يجب تفعيل JavaScript للدخول.</p></noscript>
+$(else)
+<script>function submitCompatibleLogin(){return true;}</script>
+$(endif)
+</main>
 <span id="router-reason" hidden data-original="$(error-orig-esc)" data-message="$(error-esc)"></span>
 <script>(function(){
 var node=document.getElementById('router-reason');
@@ -36,7 +44,6 @@ $(if error == "")
 "link_login_only": 	"$(link-login-only)",
 "link_logout":		"$(link-logout)",
 "link_status":		"$(link-status)",
-"nas_id": 		    "$(identity)",
 "ip": 		        "$(ip)",
 "mac": 		        "$(mac-esc)",
 "action":           "onLoginStart"

@@ -19,6 +19,8 @@ def run(p,mode,username='123456',status_username='123456',speed='hotspot'):
     state={'logged':False,'statusName':status_username}
     def fulfill(route):
         req=route.request;u=urlsplit(req.url);path=u.path
+        if path=='/login' and u.query.startswith('var=chapdata'):
+            return route.fulfill(status=200,content_type='text/plain',body='AMEER_CHAP_V1\nPAP\n')
         if path=='/login' and u.query=='var=callBack':
             if req.method=='POST':
                 fields=parse_qs(req.post_data or '')

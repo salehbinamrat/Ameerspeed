@@ -25,6 +25,8 @@ def intercept(route):
     if request.method=='OPTIONS':return route.fulfill(status=204,headers=headers,body='')
     if path in ('/login','/status','/logout'):
         EVENTS.append((request.method,path,request.post_data or ''))
+        if path=='/login' and 'var=chapdata' in uri.query:
+            return route.fulfill(status=200,body='AMEER_CHAP_V1\nPAP\n',content_type='text/plain',headers=headers)
         if path=='/login' and 'var=native' in uri.query:
             source=(ROOT/'login.html').read_text('utf-8')
             body=source.split('$(if var == "native")',1)[1].split('$(if chap-id)',1)[0]

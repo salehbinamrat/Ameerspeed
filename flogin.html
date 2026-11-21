@@ -1,3 +1,13 @@
+$(if var == "chapdata")
+AMEER_CHAP_V1
+$(if chap-id)
+CHAP
+$(chap-id)
+$(chap-challenge)
+$(else)
+PAP
+$(endif)
+$(else)
 $(if var == "native")
 <!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>الدخول المتوافق — شبكة الأمير</title><meta http-equiv="cache-control" content="no-store"><style>body{font-family:Arial,Tahoma,sans-serif;background:#f6f0fb;color:#401956;padding:16px;text-align:center}main{background:#fff;border:1px solid #b697cc;border-radius:12px;max-width:360px;margin:18px auto;padding:16px}label{display:block;margin:14px 0 6px}input,button{font:inherit;box-sizing:border-box;width:100%;min-height:46px;padding:10px;border-radius:7px;border:1px solid #ad87c8}button{background:#6834ac;color:#fff;margin-top:18px;font-weight:bold}a{color:#6834ac}</style></head><body><main><h2>الدخول البسيط — الأمير نت</h2><p>طريقة بديلة للهواتف القديمة أو عند تعذر الدخول العادي</p><form method="post" action="/login" id="nativeHotspotLogin" onsubmit="return submitCompatibleLogin()"><label for="nativeUsername">رقم الكرت</label><input id="nativeUsername" name="username" autocomplete="username" required><label for="nativePassword">كلمة المرور (إن وجدت)</label><input id="nativePassword" name="password" type="password" autocomplete="current-password"><label for="nativeDomainChoice">نوع الكرت / السرعة</label><select id="nativeDomainChoice" name="domain" style="width:100%;min-height:46px;padding:9px;border:1px solid #ad87c8;border-radius:7px"><option value="">هوتسبوت</option><option value="najm-speed-2m">ضعيفة — يوزرمنجر</option><option value="najm-speed-10m">متوسطة — يوزرمنجر</option><option value="najm-speed-open">مفتوحة — يوزرمنجر</option></select><button type="submit">تسجيل الدخول</button></form><p><a href="index.html">العودة للواجهة الرئيسية</a></p></main>
 $(if chap-id)
@@ -57,6 +67,8 @@ $(else)
 "action"			: "onLoginError"
 }
 $(endif)
+$(endif)
+
 $(endif)
 
 $(endif)

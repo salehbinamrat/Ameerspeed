@@ -51,7 +51,7 @@ class PortalTests(unittest.TestCase):
     def test_hotspot_speed_and_status_untouched(self):
         for value in ('hotspot','najm-speed-2m','najm-speed-10m','najm-speed-open'):
             self.assertIn('value='+value,HTML)
-        for endpoint in ('/login?username=','/status?var=callBack','/logout?var=callBack'):
+        for endpoint in ('/login?var=callBack','/status?var=callBack','/logout?var=callBack'):
             self.assertIn(endpoint,JS)
         self.assertIn('classifyHotspotError',JS)
     def test_no_external_script_dependencies(self):

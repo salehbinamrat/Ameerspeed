@@ -11,7 +11,7 @@ html=(ROOT/'index.html').read_text()
 # External resources are inlined because this sandbox blocks all browser navigation.
 html=re.sub(r'<script[^>]*src=[^>]*></script>','',html)
 html=re.sub(r'<script>.*?</script>','',html,flags=re.S)
-html=html.replace('<link href="css/portal.css" rel="stylesheet"/>','<style>'+(ROOT/'css/portal.css').read_text()+'</style>')
+html=re.sub(r'<link href="css/portal\.css(?:\?[^"]+)?" rel="stylesheet"\s*/>', lambda _: '<style>'+(ROOT/'css/portal.css').read_text()+'</style>', html)
 with sync_playwright() as p:
     chrome=os.getenv('PLAYWRIGHT_CHROMIUM_PATH') or shutil.which('chromium')
     options={'args':['--no-sandbox'],'headless':True}

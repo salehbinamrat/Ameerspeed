@@ -20,7 +20,9 @@ jobs:
       - name: HTML and file-integrity regression tests
         run: python -m unittest discover -s tests -p 'test_*.py' -v
       - name: RouterOS error classifier tests
-        run: node tests/error_mapping.test.js
+        run: |
+          node tests/error_mapping.test.js
+          node tests/deep_regression.test.js
       - name: JavaScript syntax checks
         run: for f in js/*.js; do node --check "$f"; done
   portal-browser:
@@ -38,3 +40,4 @@ jobs:
         run: |
           python tests/browser_regression.py
           python tests/browser_login_flow.py
+          python tests/full_page_smoke.py

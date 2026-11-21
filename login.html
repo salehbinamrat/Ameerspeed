@@ -1,3 +1,15 @@
+$(if var == "native")
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>الدخول المتوافق — شبكة الأمير</title><meta http-equiv="cache-control" content="no-store"><style>body{font-family:Arial,Tahoma,sans-serif;background:#f6f0fb;color:#401956;padding:16px;text-align:center}main{background:#fff;border:1px solid #b697cc;border-radius:12px;max-width:360px;margin:18px auto;padding:16px}label{display:block;margin:14px 0 6px}input,button{font:inherit;box-sizing:border-box;width:100%;min-height:46px;padding:10px;border-radius:7px;border:1px solid #ad87c8}button{background:#6834ac;color:#fff;margin-top:18px;font-weight:bold}a{color:#6834ac}</style></head><body><main><h2>الدخول البسيط — الأمير نت</h2><p>طريقة بديلة للهواتف القديمة أو عند تعذر الدخول العادي</p><form method="post" action="/login" id="nativeHotspotLogin" onsubmit="return submitCompatibleLogin()"><label for="nativeUsername">رقم الكرت</label><input id="nativeUsername" name="username" autocomplete="username" required><label for="nativePassword">كلمة المرور (إن وجدت)</label><input id="nativePassword" name="password" type="password" autocomplete="current-password"><input type="hidden" id="nativeDomain" name="domain" value=""><button type="submit">تسجيل الدخول</button></form><p><a href="index.html">العودة للواجهة الرئيسية</a></p></main>
+$(if chap-id)
+<script src="js/md5.js"></script>
+<script>function submitCompatibleLogin(){var form=document.getElementById('nativeHotspotLogin');if(typeof hotChapMd5!=='function'){alert('تعذر تحميل مكون المصادقة. أعد المحاولة.');return false;}form.password.value=hotChapMd5('$(chap-id)'+form.password.value+'$(chap-challenge)');return true;}</script>
+<noscript><p>يتطلب نظام CHAP تفعيل JavaScript للدخول الآمن.</p></noscript>
+$(else)
+<script>function submitCompatibleLogin(){return true;}</script>
+$(endif)
+<script>(function(){try{var saved=sessionStorage.getItem('alameer_native_user');sessionStorage.removeItem('alameer_native_user');if(saved)document.getElementById('nativeUsername').value=saved;var d=sessionStorage.getItem('alameer_native_domain')||'';sessionStorage.removeItem('alameer_native_domain');if(d==='najm-speed-2m'||d==='najm-speed-10m'||d==='najm-speed-open')document.getElementById('nativeDomain').value=d;}catch(e){}})();</script>
+</body></html>
+$(else)
 $(if var == "")
 <!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>شبكة الأمير - تسجيل الدخول</title><meta http-equiv="cache-control" content="no-store"></head><body style="font-family:Arial,sans-serif;text-align:center;padding:20px;background:#f4f1f6;color:#511a64">
 <p role="status" id="nativeMessage">جارٍ فتح صفحة شبكة الأمير...</p>
@@ -10,7 +22,7 @@ var url='index.html';
 if(raw){
     url+='?alameer_login_failed=1';
     try{sessionStorage.setItem('alameer_login_error_v2',raw);}
-    catch(e){url+='&reason='+encodeURIComponent(raw.substring(0,1000));}
+    catch(e){/* Private server errors must never be added to the URL. */}
 }
 window.location.replace(url);
 })();</script>
@@ -38,4 +50,6 @@ $(else)
 "action"			: "onLoginError"
 }
 $(endif)
+$(endif)
+
 $(endif)

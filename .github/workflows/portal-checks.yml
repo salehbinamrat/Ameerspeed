@@ -1,0 +1,40 @@
+name: Portal checks
+on:
+  push:
+    branches-ignore: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  portal-core:
+    name: Portal Core
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - name: HTML and file-integrity regression tests
+        run: python -m unittest discover -s tests -p 'test_*.py' -v
+      - name: RouterOS error classifier tests
+        run: node tests/error_mapping.test.js
+      - name: JavaScript syntax checks
+        run: for f in js/*.js; do node --check "$f"; done
+  portal-browser:
+    name: Portal Browser
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: Install Chromium/Playwright
+        run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Responsive screen regression
+        run: |
+          python tests/browser_regression.py
+          python tests/browser_login_flow.py

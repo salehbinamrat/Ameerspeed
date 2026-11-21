@@ -1,0 +1,41 @@
+$(if var == "")
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>شبكة الأمير - تسجيل الدخول</title><meta http-equiv="cache-control" content="no-store"></head><body style="font-family:Arial,sans-serif;text-align:center;padding:20px;background:#f4f1f6;color:#511a64">
+<p role="status" id="nativeMessage">جارٍ فتح صفحة شبكة الأمير...</p>
+<p><a href="index.html">العودة إلى صفحة الدخول</a></p>
+<span id="router-reason" hidden data-original="$(error-orig-esc)" data-message="$(error-esc)"></span>
+<script>(function(){
+var node=document.getElementById('router-reason');
+var raw=node && (node.getAttribute('data-original') || node.getAttribute('data-message')) || '';
+var url='index.html';
+if(raw){
+    url+='?alameer_login_failed=1';
+    try{sessionStorage.setItem('alameer_login_error_v2',raw);}
+    catch(e){url+='&reason='+encodeURIComponent(raw.substring(0,1000));}
+}
+window.location.replace(url);
+})();</script>
+<noscript><p>افتح صفحة الدخول وأعد المحاولة.</p></noscript>
+</body></html>
+$(else)
+$(if error == "")
+{
+"logged_in": 		"$(logged-in)",
+"link_only":		"$(link-orig-esc)",
+"link_login_only": 	"$(link-login-only)",
+"link_logout":		"$(link-logout)",
+"link_status":		"$(link-status)",
+"nas_id": 		    "$(identity)",
+"ip": 		        "$(ip)",
+"mac": 		        "$(mac-esc)",
+"action":           "onLoginStart"
+}
+$(else)
+{
+"logged_in" 	    : "$(logged-in)",
+"link_login_only" 	: "$(link-login-only)",
+"error_orig"		: "$(error-orig-esc)",
+"error"				: "$(error-esc)",
+"action"			: "onLoginError"
+}
+$(endif)
+$(endif)
